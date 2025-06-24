@@ -9,7 +9,7 @@ import { Mail, Phone, MapPin, Instagram, Youtube, Music, Menu, X, Mic } from "lu
 import ScrollFloat from "@/components/ScrollFloat";
 import VariableProximity from "@/components/VariableProximity";
 import { Navbar, NavBody, NavItems, NavbarLogo, MobileNav, MobileNavHeader, MobileNavToggle, MobileNavMenu } from "@/components/ui/resizable-navbar";
-
+import JoinClubPage from '../components/JoinClubPage';
 const RecruitmentPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const contactTextRef = useRef<HTMLDivElement>(null);
@@ -56,7 +56,7 @@ const RecruitmentPage = () => {
       </Navbar>
 
       {/* Contact Section */}
-      <section id="contact" className="pt-16 py-20 bg-primary-bg/80 backdrop-blur-sm relative">
+      <section id="contact" className="min-h-screen pt-16 py-20 bg-primary-bg/80 backdrop-blur-sm relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollFloat
@@ -144,40 +144,8 @@ const RecruitmentPage = () => {
               </div>
             </div>
 
-            <Card className="bg-neutral-lightest border-neutral-light">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-text-primary mb-6">Join Our Club</h3>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-text-primary mb-2">First Name</label>
-                      <Input className="border-neutral-light focus:border-accent-orange" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-text-primary mb-2">Last Name</label>
-                      <Input className="border-neutral-light focus:border-accent-orange" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">Email</label>
-                    <Input type="email" className="border-neutral-light focus:border-accent-orange" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">Phone</label>
-                    <Input type="tel" className="border-neutral-light focus:border-accent-orange" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      Why do you want to join Voice IT?
-                    </label>
-                    <Textarea className="border-neutral-light focus:border-accent-orange" rows={4} />
-                  </div>
-                  <Button className="w-full bg-accent-orange hover:bg-accent-orange/90 text-white py-3 rounded-full font-semibold">
-                    Submit Application
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            
+            <JoinClubPage></JoinClubPage>
           </div>
         </div>
       </section>

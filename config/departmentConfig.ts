@@ -1,7 +1,7 @@
 type Department = {
   name: string;
   description: string;
-  email: string;
+  email: string[];
   questions: string[];
 };
 
@@ -9,7 +9,7 @@ export const departments: Record<string, Department> = {
   "rj-tamil": {
     name: "RJ Tamil",
     description: "Host, engage and entertain Tamil-speaking audiences.",
-    email: "rj.tamil@club.com",
+    email: ["rj.tamil@club.com"],
     questions: [
       "Why are you interested in this department?",
       "Explain your previous experience in this department.",
@@ -20,7 +20,7 @@ export const departments: Record<string, Department> = {
   "design": {
     name: "Design",
     description: "Create visuals for club promotions and events.",
-    email: "design@club.com",
+    email: ["design@club.com"],
     questions: [
       "Why are you interested in this department?",
       "Explain your previous experience in design.",
@@ -31,7 +31,7 @@ export const departments: Record<string, Department> = {
   "technical": {
     name: "Technical",
     description: "Build websites, apps, and solve tech issues.",
-    email: "black.goku.007.279@gmail.com",
+    email: ["rishika.v2023@vitstudent.ac.in","black.goku.007.279@gmail.com"],
     questions: [
       "Why are you interested in this department?",
       "What technical skills do you have?",
@@ -42,7 +42,7 @@ export const departments: Record<string, Department> = {
   "content": {
     name: "Content",
     description: "Write compelling content for campaigns, events, and social media.",
-    email: "content@club.com",
+    email: ["content@club.com"],
     questions: [
       "Why are you interested in this department?",
       "Have you written blogs, scripts, or stories before?",
@@ -52,7 +52,7 @@ export const departments: Record<string, Department> = {
   "hr": {
     name: "HR",
     description: "Manage communication and coordination between club members.",
-    email: "hr@club.com",
+    email: ["hr@club.com"],
     questions: [
       "Why are you interested in this department?",
       "Have you worked in teams or led any group initiatives before?",
@@ -61,7 +61,7 @@ export const departments: Record<string, Department> = {
   "editing": {
     name: "Editing",
     description: "Edit videos, podcasts, and other media content.",
-    email: "editing@club.com",
+    email: ["editing@club.com"],
     questions: [
       "Why are you interested in editing?",
       "What tools do you use (Premiere Pro, DaVinci, etc.)?",
@@ -71,7 +71,7 @@ export const departments: Record<string, Department> = {
   "camera": {
     name: "Camera",
     description: "Capture moments, events, and club activities with a creative eye.",
-    email: "camera@club.com",
+    email: ["camera@club.com"],
     questions: [
       "Why are you interested in photography/videography?",
       "Do you have experience handling camera equipment?",
@@ -81,7 +81,7 @@ export const departments: Record<string, Department> = {
   "events-and-sponsors": {
     name: "Events & Sponsors",
     description: "Plan events and approach sponsors for collaborations.",
-    email: "events@club.com",
+    email: ["events@club.com"],
     questions: [
       "Why are you interested in this department?",
       "Have you organized or helped in any events before?",
@@ -90,18 +90,17 @@ export const departments: Record<string, Department> = {
   "sponsorship": {
     name: "Sponsorship",
     description: "Secure sponsorships and build partnerships for club activities.",
-    email: "sponsorship@club.com",
+    email: ["sponsorship@club.com"],
     questions: [
       "Why are you interested in sponsorship?",
       "Have you pitched ideas or negotiated before?",
     ],
   },
 
-  // Add the rest of the RJ departments similarly...
   "rj-english": {
     name: "RJ English",
     description: "Engage and broadcast to English-speaking audiences.",
-    email: "rj.english@club.com",
+    email: ["rj.english@club.com"],
     questions: [
       "Why are you interested in RJ (English)?",
       "Any prior experience in speaking, anchoring or podcasting?",
@@ -111,7 +110,7 @@ export const departments: Record<string, Department> = {
   "rj-telugu": {
     name: "RJ Telugu",
     description: "Engage and broadcast to Telugu-speaking audiences.",
-    email: "rj.english@club.com",
+    email: ["rj.english@club.com"],
     questions: [
       "Why are you interested in RJ (English)?",
       "Any prior experience in speaking, anchoring or podcasting?",
@@ -121,7 +120,7 @@ export const departments: Record<string, Department> = {
   "rj-malayalam": {
     name: "RJ Malayalam",
     description: "Engage and broadcast to Malayalam-speaking audiences.",
-    email: "rj.english@club.com",
+    email: ["rj.english@club.com"],
     questions: [
       "Why are you interested in RJ (English)?",
       "Any prior experience in speaking, anchoring or podcasting?",
@@ -131,7 +130,7 @@ export const departments: Record<string, Department> = {
   "rj-hindi": {
     name: "RJ Hindi",
     description: "Engage and broadcast to hindi-speaking audiences.",
-    email: "rj.english@club.com",
+    email: ["rj.english@club.com"],
     questions: [
       "Why are you interested in RJ (English)?",
       "Any prior experience in speaking, anchoring or podcasting?",

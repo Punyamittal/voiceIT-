@@ -19,7 +19,7 @@ export async function sendEmailToLead({ name, email, phone, department, answers 
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
-    to: deptInfo.email,
+    to: Array.isArray(deptInfo.email) ? deptInfo.email : [deptInfo.email],
     subject: `New Application - ${deptInfo.name}`,
     html: `
       <h2>Applicant: ${name}</h2>

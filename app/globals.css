@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  @apply bg-primary-bg text-text-primary;
+  @apply text-text-primary; /* Removed bg-primary-bg */
 }
 
 @layer utilities {
@@ -57,7 +57,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground; /* Removed bg-background */
   }
 }
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Hyperspeed from '@/components/Hyperspeed'
+import Squares from '@/components/Squares'
 import { ThemeProvider } from '@/components/theme-provider'
 import { AudioProvider } from "@/contexts/AudioContext"
 
@@ -40,7 +40,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AudioProvider>
-            <Hyperspeed />
+            <Squares
+              speed={0.5}
+              squareSize={40}
+              direction='diagonal' // up, down, left, right, diagonal
+              borderColor='#fff'
+              hoverFillColor='#222'
+            />
             {children}
           </AudioProvider>
         </ThemeProvider>

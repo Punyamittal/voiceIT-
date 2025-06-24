@@ -34,6 +34,7 @@ import TiltedCard from '../components/TiltedCard'
 import { Carousel, Card as AppleCard } from "@/components/ui/apple-cards-carousel"
 import Folder from '@/components/Folder'
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card"
+import TypewriterEffect from '@/components/TypewriterEffect'; // Import the new TypewriterEffect component
 
 export default function VoiceITWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -143,6 +144,12 @@ export default function VoiceITWebsite() {
   ]
 
   const teamMembers = [
+    // Advisory Board
+    { image: "/team/advisory-varishth.jpg" },
+    { image: "/team/advisory-srinidhi.jpg" },
+    { image: "/team/advisory-dishitha.jpg" },
+    { image: "/team/advisory-malavika.jpg" },
+    { image: "/team/advisory-midun.jpg" },
     // Core Team
     { image: "/team/pranav2.jpg" },
     { image: "/team/hemshyam.jpg" },
@@ -150,31 +157,13 @@ export default function VoiceITWebsite() {
     { image: "/team/priyanka.jpg" },
     { image: "/team/sai.jpg" },
     { image: "/team/kamalesh.jpg" },
-    // Advisory Board
-    { image: "/team/advisory-varishth.jpg" },
-    { image: "/team/advisory-srinidhi.jpg" },
-    { image: "/team/advisory-dishitha.jpg" },
-    { image: "/team/advisory-malavika.jpg" },
-    { image: "/team/advisory-midun.jpg" },
-    // Content Team
-    { image: "/team/content-vahini.jpg" },
-    { image: "/team/content-divya.jpg" },
-    { image: "/team/content-monica.jpg" },
-    // Design Team
-    { image: "/team/design-guru.jpg" },
-    { image: "/team/design-yoha.jpg" },
     // HR Team
     { image: "/team/hr-shanmitha.jpg" },
     { image: "/team/hr-dharsan_j_k.jpg" },
     { image: "/team/hr-haseeb-ahsan.jpg" },
-    // Tech Team
-    { image: "/team/tech-rishika.jpg" },
-    // Camera & Editing Team
-    { image: "/team/camera-annamalai.jpg" },
-    { image: "/team/camera-mithin.jpg" },
-    { image: "/team/editing-adithya.jpg" },
-    { image: "/team/editing-munis.jpg" },
     // Language Teams
+    { image: "/team/telugu2.jpg" },
+    { image: "/team/telugu11.jpg" },
     { image: "/team/eng-tannya.jpg" },
     { image: "/team/eng-deekshitha.jpg" },
     { image: "/team/tamil-jerome.jpg" },
@@ -184,7 +173,26 @@ export default function VoiceITWebsite() {
     { image: "/team/tamil-rajaraman.jpg" },
     { image: "/team/malyalam-lakshmi.jpg" },
     { image: "/team/malyalam-goutham.jpg" },
-    { image: "/team/hin-aman.jpg" }
+    { image: "/team/hin-aman.jpg" },
+    
+    // Content Team
+    { image: "/team/content-vahini.jpg" },
+    { image: "/team/content-divya.jpg" },
+    { image: "/team/content-monica.jpg" },
+    // Design Team
+    { image: "/team/design-guru.jpg" },
+    { image: "/team/design-yoha.jpg" },
+
+    
+    // Tech Team
+    { image: "/team/tech-rishika.jpg" },
+    // Camera & Editing Team
+    { image: "/team/camera-annamalai.jpg" },
+    { image: "/team/camera-mithin.jpg" },
+    { image: "/team/editing-adithya.jpg" },
+    { image: "/team/editing-munis.jpg" }
+    
+    
   ]
 
   // Add cursor effect state
@@ -233,7 +241,7 @@ export default function VoiceITWebsite() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {["home", "about", "events", "team", "live", "contact"].map((section) => (
+              {["home", "about", "team"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -243,9 +251,39 @@ export default function VoiceITWebsite() {
                       : "text-text-secondary hover:text-accent-orange"
                   }`}
                 >
-                  {section === "live" ? "Live Radio" : section}
+                  {section}
                 </button>
               ))}
+              <a
+                href="/recruitment"
+                className={`capitalize transition-colors ${
+                  activeSection === "recruitment"
+                    ? "text-accent-orange font-semibold"
+                    : "text-text-secondary hover:text-accent-orange"
+                }`}
+              >
+                Recruitment
+              </a>
+              <a
+                href="/podcasts"
+                className={`capitalize transition-colors ${
+                  activeSection === "podcasts"
+                    ? "text-accent-orange font-semibold"
+                    : "text-text-secondary hover:text-accent-orange"
+                }`}
+              >
+                Podcasts
+              </a>
+              <a
+                href="/events"
+                className={`capitalize transition-colors ${
+                  activeSection === "events"
+                    ? "text-accent-orange font-semibold"
+                    : "text-text-secondary hover:text-accent-orange"
+                }`}
+              >
+                Events
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -264,15 +302,33 @@ export default function VoiceITWebsite() {
         {isMenuOpen && (
           <div className="md:hidden bg-primary-bg border-t border-neutral-light">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {["home", "about", "events", "team", "live", "contact"].map((section) => (
+              {["home", "about", "team"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
                   className="block px-3 py-2 text-base font-medium text-text-secondary hover:text-accent-orange capitalize w-full text-left"
                 >
-                  {section === "live" ? "Live Radio" : section}
+                  {section}
                 </button>
               ))}
+              <a
+                href="/recruitment"
+                className="block px-3 py-2 text-base font-medium text-text-secondary hover:text-accent-orange capitalize w-full text-left"
+              >
+                Recruitment
+              </a>
+              <a
+                href="/podcasts"
+                className="block px-3 py-2 text-base font-medium text-text-secondary hover:text-accent-orange capitalize w-full text-left"
+              >
+                Podcasts
+              </a>
+              <a
+                href="/events"
+                className="block px-3 py-2 text-base font-medium text-text-secondary hover:text-accent-orange capitalize w-full text-left"
+              >
+                Events
+              </a>
             </div>
           </div>
         )}
@@ -286,10 +342,11 @@ export default function VoiceITWebsite() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge className="bg-accent-orange/10 text-accent-orange border-accent-orange/20">
-                  Official RJ Club of VIT Chennai
-                </Badge>
+              <div className="space-y-2">
+                <TypewriterEffect
+                  words={["Voice IT", "वॉइस आईटी", "വോയ്സ് ഐടി", "వాయిస్ ఐటి", "வாய்ஸ் ஐடி", "ವಾಯ್ಸ್ ಐಟಿ"]}
+                  className="text-7xl font-bold text-accent-orange"
+                />
                 <ScrollFloat
                   animationDuration={1}
                   ease="back.inOut(2)"
@@ -299,7 +356,10 @@ export default function VoiceITWebsite() {
                   containerClassName="text-6xl font-bold text-text-primary"
                   scrollContainerRef={scrollContainerRef}
                 >
-                  Voice IT
+                  <TypewriterEffect
+                    words={["Voice IT", "वॉइस आईटी", "வாய்ஸ் ஐடி", "వాయిస్ ఐటి", "വോയ്സ് ഐടി"]}
+                    className="text-6xl font-bold text-text-primary"
+                  />
                 </ScrollFloat>
                 <p className="text-xl text-text-secondary max-w-lg">
                   <VariableProximity
@@ -318,7 +378,7 @@ export default function VoiceITWebsite() {
                 <Button
                   size="lg"
                   className="bg-accent-orange hover:bg-accent-orange/90 text-white px-8 py-3 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-accent-orange/25"
-                  onClick={() => scrollToSection("contact")}
+                  onClick={() => window.location.href = "/recruitment"}
                 >
                   Join the Club
                 </Button>
@@ -335,7 +395,7 @@ export default function VoiceITWebsite() {
             </div>
 
             <div className="relative">
-              <div className="relative bg-gradient-to-br from-accent-orange/10 to-accent-warm/10 rounded-3xl p-8 backdrop-blur-sm border border-accent-orange/20">
+              <div className="relative bg-gradient-to-br from-accent-orange/10 to-accent-warm/10 rounded-3xl p-8 backdrop-blur-sm border border-accent-orange">
                 <div className="flex items-center justify-center space-x-4 mb-6">
                   <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
                   <span className="text-text-secondary font-medium">ON AIR</span>
@@ -393,7 +453,7 @@ export default function VoiceITWebsite() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-primary-bg border-neutral-light hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30">
+            <Card className="bg-primary-bg border-accent-orange hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30">
               <CardContent className="p-8 text-center">
                 <div className="h-[300px] w-full">
                   <EvervaultCard text="Creative Expression" />
@@ -406,7 +466,7 @@ export default function VoiceITWebsite() {
               </CardContent>
             </Card>
 
-            <Card className="bg-primary-bg border-neutral-light hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30">
+            <Card className="bg-primary-bg border-accent-orange hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30">
               <CardContent className="p-8 text-center">
                 <div className="h-[300px] w-full">
                   <EvervaultCard text="Community" />
@@ -419,7 +479,7 @@ export default function VoiceITWebsite() {
               </CardContent>
             </Card>
 
-            <Card className="bg-primary-bg border-neutral-light hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30">
+            <Card className="bg-primary-bg border-accent-orange hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30">
               <CardContent className="p-8 text-center">
                 <div className="h-[300px] w-full">
                   <EvervaultCard text="Skills" />
@@ -431,150 +491,6 @@ export default function VoiceITWebsite() {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Events Section */}
-      <section id="events" className="py-20 bg-primary-bg/80 backdrop-blur-sm relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ScrollFloat
-              animationDuration={1}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=50%"
-              scrollEnd="bottom bottom-=40%"
-              stagger={0.03}
-              containerClassName="text-4xl font-bold text-text-primary"
-              scrollContainerRef={scrollContainerRef}
-            >
-              Upcoming Events
-            </ScrollFloat>
-            <p className="text-xl text-text-secondary mt-4">
-              <VariableProximity
-                label="Don't miss out on our exciting lineup of events and workshops"
-                className="text-xl text-text-secondary"
-                fromFontVariationSettings="'wght' 400, 'opsz' 9"
-                toFontVariationSettings="'wght' 1000, 'opsz' 40"
-                containerRef={eventsTextRef as React.RefObject<HTMLElement>}
-                radius={100}
-                falloff="linear"
-              />
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {events.map((event, index) => (
-              <Card
-                key={index}
-                className="bg-neutral-lightest border-neutral-light hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30"
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="bg-accent-orange p-2 rounded-full mr-3">
-                      <Calendar className="h-4 w-4 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-accent-orange font-semibold">{event.date}</p>
-                      <p className="text-sm text-text-muted">{event.time}</p>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-semibold text-text-primary mb-3">{event.title}</h3>
-                  <p className="text-text-secondary">{event.description}</p>
-                  <Button className="mt-4 w-full bg-accent-warm hover:bg-accent-warm/90 text-white rounded-full">
-                    Register Now
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Past Events Section */}
-      <section className="py-32 bg-neutral-dark">
-        <div className="container mx-auto px-4">
-          <ScrollFloat
-            animationDuration={1}
-            ease="back.inOut(2)"
-            scrollStart="center bottom+=50%"
-            scrollEnd="bottom bottom-=40%"
-            stagger={0.03}
-            containerClassName="text-4xl font-bold text-center mb-48 text-white"
-            scrollContainerRef={scrollContainerRef}
-          >
-            Past Events
-          </ScrollFloat>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center mt-32">
-            {[
-              {
-                title: "Radio Workshop 2023",
-                date: "December 15, 2023",
-                description: "A comprehensive workshop on radio broadcasting techniques and equipment handling.",
-                highlights: "150+ participants, 8 industry experts"
-              },
-              {
-                title: "Voice IT Annual Show",
-                date: "October 20, 2023",
-                description: "Our annual showcase featuring the best of campus radio and entertainment.",
-                highlights: "Live performances, Guest RJs"
-              },
-              {
-                title: "Podcast Masterclass",
-                date: "August 5, 2023",
-                description: "Learn the art of podcasting from industry professionals.",
-                highlights: "Hands-on training, Equipment demo"
-              }
-            ].map((event, index) => (
-              <div key={index} className="flex flex-col items-center group">
-                <div style={{ height: '300px', position: 'relative' }}>
-                  <Folder 
-                    size={3} 
-                    color="#FF6B00" 
-                    className="custom-folder"
-                    items={index === 0 ? [
-                      <Image key="magic1" src="/team/magic1.jpg" alt="Magic 1" width={100} height={100} className="w-full h-full object-cover rounded-lg" />,
-                      <Image key="magic2" src="/team/magic3.jpg" alt="Magic 2" width={100} height={100} className="w-full h-full object-cover rounded-lg" />,
-                      <Image key="magic3" src="/team/magic2.jpg" alt="Magic 3" width={100} height={100} className="w-full h-full object-cover rounded-lg" />
-                    ] : index === 1 ? [
-                      <Image key="dare1" src="/team/dare1.jpg" alt="Dare 1" width={100} height={100} className="w-full h-full object-cover rounded-lg" />,
-                      <Image key="dare2" src="/team/dare3.jpg" alt="Dare 2" width={100} height={100} className="w-full h-full object-cover rounded-lg" />,
-                      <Image key="dare3" src="/team/dare2.jpg" alt="Dare 3" width={100} height={100} className="w-full h-full object-cover rounded-lg" />
-                    ] : [
-                      <Image key="exit1" src="/team/exit1.jpg" alt="Exit 1" width={100} height={100} className="w-full h-full object-cover rounded-lg" />,
-                      <Image key="exit2" src="/team/exit3.jpg" alt="Exit 2" width={100} height={100} className="w-full h-full object-cover rounded-lg" />,
-                      <Image key="exit3" src="/team/exit2.jpg" alt="Exit 3" width={100} height={100} className="w-full h-full object-cover rounded-lg" />
-                    ]}
-                  />
-                </div>
-                <div className="mt-0.1 text-center transform transition-all duration-300 group-hover:scale-105">
-                  <div className="relative inline-block">
-                    <h3 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-accent-orange via-accent-warm to-accent-orange bg-clip-text text-transparent bg-size-200 animate-gradient">
-                      {index === 0 ? "Magic Show" : index === 1 ? "Dare Dash 2.0" : "Emergency Exit 2.0"}
-                    </h3>
-                    <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-accent-orange via-accent-warm to-accent-orange transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
-                  </div>
-                  <div className="mt-4 px-6 py-2 bg-accent-orange/10 rounded-full backdrop-blur-sm">
-                    <p className="text-sm text-accent-orange font-medium">
-                      {index === 0 ? "Experience the Magic" : index === 1 ? "Take the Challenge" : "Find Your Way"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-16 text-center">
-            <a 
-              href="https://www.instagram.com/voiceit_vitcc" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent-orange to-accent-warm text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:from-accent-warm hover:to-accent-orange group"
-            >
-              <Instagram className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span>View More Past Events</span>
-              <div className="absolute inset-0 bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
-            <p className="mt-4 text-text-secondary text-sm">Follow us on Instagram for more exciting events and updates!</p>
           </div>
         </div>
       </section>
@@ -625,243 +541,6 @@ export default function VoiceITWebsite() {
                 />
               </div>
             ))} />
-          </div>
-        </div>
-      </section>
-
-      {/* Live Radio & Podcasts Section */}
-      <section id="live" className="py-16 bg-neutral-dark">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <ScrollFloat
-              animationDuration={1}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=50%"
-              scrollEnd="bottom bottom-=40%"
-              stagger={0.03}
-              containerClassName="text-4xl font-bold text-text-primary"
-              scrollContainerRef={scrollContainerRef}
-            >
-              Radio & Podcasts
-            </ScrollFloat>
-          </div>
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Live Radio Card */}
-            <div className="flex-1 bg-primary-bg rounded-lg overflow-hidden shadow-lg">
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-4">Live Radio</h3>
-                <p className="text-text-secondary mb-6">Your daily dose of music, news, and campus updates</p>
-                <AudioPlayer 
-                  audioUrl="/H.mp3" 
-                  title="Campus Vibes Live Stream"
-                  className="mb-4"
-                />
-                <div className="flex items-center space-x-4">
-                  <div className="bg-accent-warm/10 p-3 rounded-full">
-                    <Users className="h-5 w-5 text-accent-warm" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-text-primary">Listeners</p>
-                    <p className="text-text-secondary">1.2K Online</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Podcasts Card */}
-            <div className="flex-1 bg-primary-bg rounded-lg overflow-hidden shadow-lg">
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-4">Latest Podcasts</h3>
-                <div className="space-y-4">
-                  {[
-                    {
-                      title: "Tech Talk Tuesday",
-                      icon: <Radio className="h-6 w-6 text-accent-warm" />,
-                      description: "Latest tech trends and discussions",
-                      audioUrl: "/podcasts/tech-talk-ep1.mp3"
-                    },
-                    {
-                      title: "Campus Chronicles",
-                      icon: <Users className="h-6 w-6 text-accent-warm" />,
-                      description: "Student life and campus events",
-                      audioUrl: "/podcasts/campus-chronicles-ep1.mp3"
-                    },
-                    {
-                      title: "Music & More",
-                      icon: <Headphones className="h-6 w-6 text-accent-warm" />,
-                      description: "Music reviews and artist interviews",
-                      audioUrl: "/podcasts/music-more-ep1.mp3"
-                    }
-                  ].map((podcast, index) => (
-                    <div key={index} className="flex items-center space-x-3 bg-accent-warm/5 p-3 rounded-lg hover:bg-accent-warm/10 transition-colors">
-                      <div className="flex-shrink-0 bg-accent-warm/10 p-2 rounded-lg">
-                        {podcast.icon}
-                      </div>
-                      <div className="flex-grow min-w-0">
-                        <h4 className="font-medium text-text-primary text-sm truncate">{podcast.title}</h4>
-                        <p className="text-xs text-text-secondary truncate">{podcast.description}</p>
-                      </div>
-                      <div className="flex-shrink-0">
-                        <AudioPlayer 
-                          audioUrl={podcast.audioUrl}
-                          title={podcast.title}
-                          className="bg-accent-warm/10 p-1.5 rounded-lg hover:bg-accent-warm/20 transition-colors"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 space-y-3">
-                  <div className="flex flex-col gap-4">
-                    <a
-                      href="https://www.youtube.com/@voiceit_vitcc"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-2 px-4 py-2 bg-accent-warm/10 hover:bg-accent-warm/20 text-accent-warm rounded-lg transition-all duration-300 hover:scale-105"
-                    >
-                      <Youtube className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                      <span className="font-medium">Watch on YouTube</span>
-                    </a>
-                    <a
-                      href="https://open.spotify.com/show/your-show-id"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-2 px-4 py-2 bg-accent-warm/10 hover:bg-accent-warm/20 text-accent-warm rounded-lg transition-all duration-300 hover:scale-105"
-                    >
-                      <Music className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                      <span className="font-medium">Listen on Spotify</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-primary-bg/80 backdrop-blur-sm relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ScrollFloat
-              animationDuration={1}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=50%"
-              scrollEnd="bottom bottom-=40%"
-              stagger={0.03}
-              containerClassName="text-4xl font-bold text-text-primary"
-              scrollContainerRef={scrollContainerRef}
-            >
-              Join Voice IT
-            </ScrollFloat>
-            <p className="text-xl text-text-secondary mt-4">
-              <VariableProximity
-                label="Ready to amplify your voice? Get in touch with us and become part of our community"
-                className="text-xl text-text-secondary"
-                fromFontVariationSettings="'wght' 400, 'opsz' 9"
-                toFontVariationSettings="'wght' 1000, 'opsz' 40"
-                containerRef={contactTextRef as React.RefObject<HTMLElement>}
-                radius={100}
-                falloff="linear"
-              />
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold text-text-primary mb-6">Get in Touch</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-accent-orange/10 p-3 rounded-full">
-                      <Mail className="h-5 w-5 text-accent-orange" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-text-primary">Email</p>
-                      <p className="text-text-secondary">voiceit.vitchennai@gmail.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                  
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-accent-orange/10 p-3 rounded-full">
-                      <MapPin className="h-5 w-5 text-accent-orange" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-text-primary">Location</p>
-                      <p className="text-text-secondary">VIT Chennai Campus, Kelambakkam</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-text-primary">Follow Us</h3>
-                <div className="flex space-x-4">
-                  <a
-                    href="https://www.instagram.com/voiceit_vitcc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group p-2 bg-accent-warm/10 rounded-full hover:bg-accent-warm/20 transition-all duration-300 hover:scale-110"
-                  >
-                    <Instagram className="h-5 w-5 text-accent-warm group-hover:rotate-12 transition-transform duration-300" />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/@voiceit_vitcc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group p-2 bg-accent-warm/10 rounded-full hover:bg-accent-warm/20 transition-all duration-300 hover:scale-110"
-                  >
-                    <Youtube className="h-5 w-5 text-accent-warm group-hover:rotate-12 transition-transform duration-300" />
-                  </a>
-                  <a
-                    href="https://open.spotify.com/show/your-show-id"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group p-2 bg-accent-warm/10 rounded-full hover:bg-accent-warm/20 transition-all duration-300 hover:scale-110"
-                  >
-                    <Music className="h-5 w-5 text-accent-warm group-hover:rotate-12 transition-transform duration-300" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <Card className="bg-neutral-lightest border-neutral-light">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-text-primary mb-6">Join Our Club</h3>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-text-primary mb-2">First Name</label>
-                      <Input className="border-neutral-light focus:border-accent-orange" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-text-primary mb-2">Last Name</label>
-                      <Input className="border-neutral-light focus:border-accent-orange" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">Email</label>
-                    <Input type="email" className="border-neutral-light focus:border-accent-orange" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">Phone</label>
-                    <Input type="tel" className="border-neutral-light focus:border-accent-orange" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      Why do you want to join Voice IT?
-                    </label>
-                    <Textarea className="border-neutral-light focus:border-accent-orange" rows={4} />
-                  </div>
-                  <Button className="w-full bg-accent-orange hover:bg-accent-orange/90 text-white py-3 rounded-full font-semibold">
-                    Submit Application
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>

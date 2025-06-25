@@ -31,7 +31,7 @@ export const departments: Record<string, Department> = {
   "technical": {
     name: "Technical",
     description: "Build websites, apps, and solve tech issues.",
-    email: ["rishika.v2023@vitstudent.ac.in","black.goku.007.279@gmail.com"],
+    email: ["hirendrabalaji3@gmail.com","black.goku.007.279@gmail.com"],
     questions: [
       "Why are you interested in this department?",
       "What technical skills do you have?",

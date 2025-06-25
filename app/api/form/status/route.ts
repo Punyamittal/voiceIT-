@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import dayjs from "dayjs";
+
+const OPEN_FROM = new Date(process.env.RECRUITMENT_OPEN_FROM!);
+const CLOSE_ON = new Date(process.env.RECRUITMENT_CLOSE_ON!);
 
 export async function GET() {
-  const now = dayjs();
-  const start = dayjs("2025-06-10");
-  const end = dayjs("2025-07-01");
-  return NextResponse.json({ status: now.isAfter(start) && now.isBefore(end) ? "open" : "closed" });
+  const now = new Date();
+  const status = now >= OPEN_FROM && now <= CLOSE_ON ? "open" : "closed";
+  return NextResponse.json({ status });
 }

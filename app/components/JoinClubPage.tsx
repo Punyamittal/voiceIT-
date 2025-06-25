@@ -18,8 +18,6 @@ export default function JoinClubPage() {
   const [formStatus, setFormStatus] = useState("checking");
   const [questions, setQuestions] = useState<string[]>([]);
   const [deptInfo, setDeptInfo] = useState({ name: "", description: "" });
-  const [statusMessage, setStatusMessage] = useState("");
-  const [statusType, setStatusType] = useState<"success" | "error" | "">("");
   const [formData, setFormData] = useState<any>({
     name: "",
     email: "",
@@ -28,9 +26,8 @@ export default function JoinClubPage() {
     department: "",
     answers: {},
   });
+  const [message, setMessage] = useState<{ success: boolean; text: string } | null>(null);
 
-
-  // Check if form is open
   useEffect(() => {
     const checkFormStatus = async () => {
       const res = await fetch("/api/form/status");
@@ -40,7 +37,6 @@ export default function JoinClubPage() {
     checkFormStatus();
   }, []);
 
-  // Load department questions
   useEffect(() => {
     const fetchQuestions = async () => {
       if (formData.department) {
@@ -70,22 +66,20 @@ export default function JoinClubPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const { name, email, phone, year, department, answers } = formData;
 
-    // ✅ Simple frontend validation
     if (!name || !email || !phone || !year || !department) {
-      alert("Please fill in all required fields.");
+      setMessage({ success: false, text: "Please fill in all required fields." });
       return;
     }
 
     for (const question of questions) {
       if (!answers[question]) {
-        alert("Please answer all department questions.");
+        setMessage({ success: false, text: "Please answer all department questions." });
         return;
       }
     }
-
+    setMessage({ success: false, text: "Processing" });
     const res = await fetch("/api/form/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -93,31 +87,18 @@ export default function JoinClubPage() {
     });
 
     if (res.ok) {
-      setStatusType("success");
-      setStatusMessage("Application submitted successfully!");
-      setStep(1);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        year: "",
-        department: "",
-        answers: {},
-      });
+      setFormData({ name: "", email: "", phone: "", year: "", department: "", answers: {} });
+      setStep(1); // ✅ go back to step 1 first
+      setMessage({ success: true, text: "Application submitted successfully!" });
     } else {
       const err = await res.json();
-      setStatusType("error");
-      setStatusMessage("❌ " + err.error);
+      setMessage({ success: false, text: err.error });
     }
-    setTimeout(() => {
-      setStatusMessage("");
-      setStatusType("");
-    }, 6000);
-
+    setTimeout(() => {setMessage({ success: false, text: "" });
+      }, 6000);
   };
 
-
-  if (formStatus === "checking") return <div></div>;
+  if (formStatus === "checking") return <p>Checking form availability...</p>;
   if (formStatus === "closed") return <p className="text-center mt-12 text-xl">Sorry, the form is currently closed!</p>;
 
   return (
@@ -139,7 +120,6 @@ export default function JoinClubPage() {
                 <label className="block text-sm font-medium mb-1">Phone Number</label>
                 <Input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
               </div>
-
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">Year</label>
@@ -161,16 +141,11 @@ export default function JoinClubPage() {
               <Button type="button" onClick={() => setStep(2)} className="mt-6 w-full bg-accent-orange text-white rounded-full">
                 Next
               </Button>
-              {statusMessage && (
-                <div
-                  className={`text-sm font-medium p-3 rounded-md mb-4 text-center ${statusType === "success"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-red-100 text-red-700"
-                    }`}
-                >
-                  {statusMessage}
+              <div className="flex-1 text-center">
+                  {message && (
+                    <p className={`text-sm font-medium ${message.success ? "text-green-600" : "text-red-600"}`}>{message.text}</p>
+                  )}
                 </div>
-              )}
             </>
           )}
 
@@ -180,7 +155,6 @@ export default function JoinClubPage() {
                 <h3 className="text-lg font-semibold text-text-primary">{deptInfo.name}</h3>
                 <p className="text-sm text-gray-600">{deptInfo.description}</p>
               </div>
-
               {questions.map((q, i) => (
                 <div key={i}>
                   <label className="block text-sm font-medium mb-1">{q}</label>
@@ -194,13 +168,15 @@ export default function JoinClubPage() {
                   />
                 </div>
               ))}
-
-              <div className="flex justify-between mt-6">
+              <div className="flex justify-between items-center mt-6">
                 <Button type="button" onClick={() => setStep(1)} className="bg-gray-300 text-black rounded-full">Back</Button>
+                <div className="flex-1 text-center">
+                  {message && (
+                    <p className={`text-sm font-medium `}>{message.text}</p>
+                  )}
+                </div>
                 <Button type="submit" className="bg-accent-orange text-white rounded-full">Submit</Button>
               </div>
-              
-
             </>
           )}
         </form>
@@ -208,4 +184,3 @@ export default function JoinClubPage() {
     </Card>
   );
 }
-

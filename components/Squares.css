@@ -1,0 +1,21 @@
+.squares-canvas {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  position: fixed; /* Position fixed to cover the entire viewport */
+  top: 0;
+  left: 0;
+  z-index: -2; /* Move further back to allow overlay above */
+}
+
+.squares-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Darker translucent black */
+  z-index: -1; /* Above squares, below content */
+  pointer-events: none;
+}

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, Suspense, lazy } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -36,8 +36,17 @@ import { EvervaultCard, Icon } from "@/components/ui/evervault-card"
 import TypewriterEffect from '@/components/TypewriterEffect';
 import Aurora from '@/components/ui/aurora';
 import Particles from '@/components/ui/Particles';
-import Radio3D from '@/components/ui/Radio3D';
-  
+
+// Lazy load heavy components
+const Radio3D = lazy(() => import('@/components/ui/Radio3D'));
+
+// Loading component for lazy-loaded components
+const Radio3DLoader = () => (
+  <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 max-w-full max-h-[60vw] min-w-0 min-h-0 flex items-center justify-center bg-gradient-to-br from-accent-orange/20 to-white/20 rounded-lg animate-pulse">
+    <div className="text-accent-orange text-lg font-semibold">Loading...</div>
+  </div>
+);
+
 export default function VoiceITWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -368,13 +377,13 @@ export default function VoiceITWebsite() {
           />
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center relative z-10">
-          <div className="space-y-16">
-            <div className="space-y-12">
+        <div className="max-w-7xl mx-auto w-full px-2 sm:px-4 md:px-6 lg:px-8 py-10 sm:py-16 md:py-20 text-center relative z-10">
+          <div className="space-y-8 sm:space-y-12 md:space-y-16">
+            <div className="space-y-6 sm:space-y-8 md:space-y-12">
               <div>
                 <TypewriterEffect
                   words={["Voice IT", "वॉइस इट", "വോയിസ് इट", "వాయిస్ ఇట్", "வாய்ஸ் இட்", "ವಾಯ್ಸ್ ಇಟ್"]}
-                  className="text-7xl md:text-10xl lg:text-[12rem] font-black text-accent-orange tracking-tight leading-none"
+                  className="text-4xl sm:text-6xl md:text-7xl lg:text-10xl xl:text-[12rem] font-black text-accent-orange tracking-tight leading-none break-words"
                   typingSpeed={200}
                   deletingSpeed={150}
                   delayBetweenWords={2000}
@@ -385,34 +394,32 @@ export default function VoiceITWebsite() {
                   scrollStart="center bottom+=50%"
                   scrollEnd="bottom bottom-=40%"
                   stagger={0.03}
-                  containerClassName="text-6xl md:text-9xl lg:text-[11rem] font-black text-text-primary tracking-tight leading-none mb-[20px]"
+                  containerClassName="text-2xl sm:text-4xl md:text-6xl lg:text-9xl xl:text-[11rem] font-black text-text-primary tracking-tight leading-none mb-[20px] break-words"
                   scrollContainerRef={scrollContainerRef}
                 >
                   <TypewriterEffect
                     words={["Voice IT", "वॉइस आईटी", "வாய்ஸ் ஐடி", "వాయిస్ ఐటి", "വോയ്സ് ഐടി"]}
-                    className="text-6xl md:text-9xl lg:text-[11rem] font-black text-text-primary tracking-tight leading-none"
+                    className="text-2xl sm:text-4xl md:text-6xl lg:text-9xl xl:text-[11rem] font-black text-text-primary tracking-tight leading-none break-words"
                     typingSpeed={200}
                     deletingSpeed={150}
                     delayBetweenWords={2000}
                   />
                 </ScrollFloat>
-
                 {/* 3D Radio Model */}
                 <div className="flex justify-center items-center">
-                  <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                  <Suspense fallback={<Radio3DLoader />}>
                     <Radio3D
                       size={300}
                       rotationSpeed={0.01}
                       enableRotation={true}
                       className="w-full h-full"
                     />
-                  </div>
+                  </Suspense>
                 </div>
-
-                <p className="text-2xl md:text-4xl lg:text-5xl text-text-secondary max-w-6xl mx-auto leading-relaxed font-light">
+                <p className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl text-text-secondary max-w-6xl mx-auto leading-relaxed font-light break-words">
                   <VariableProximity
                     label="Where voices come alive and stories find their rhythm. Join VIT Chennai's premier radio community."
-                    className="text-2xl md:text-4xl lg:text-5xl text-text-secondary font-light"
+                    className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl text-text-secondary font-light break-words"
                     fromFontVariationSettings="'wght' 300, 'opsz' 9"
                     toFontVariationSettings="'wght' 1000, 'opsz' 40"
                     containerRef={heroTextRef as React.RefObject<HTMLElement>}
@@ -421,11 +428,10 @@ export default function VoiceITWebsite() {
                   />
                 </p>
               </div>
-
               <div className="flex justify-center">
                 <Button
                   size="lg"
-                  className="bg-accent-orange hover:bg-accent-orange/90 text-white px-12 py-6 rounded-full font-black text-2xl md:text-3xl lg:text-4xl transition-all hover:shadow-2xl hover:shadow-accent-orange/25 transform hover:scale-105"
+                  className="bg-accent-orange hover:bg-accent-orange/90 text-white px-8 sm:px-12 py-4 sm:py-6 rounded-full font-black text-lg sm:text-2xl md:text-3xl lg:text-4xl transition-all hover:shadow-2xl hover:shadow-accent-orange/25 transform hover:scale-105"
                   onClick={() => window.location.href = "/recruitment"}
                 >
                   Join the Club
@@ -437,8 +443,8 @@ export default function VoiceITWebsite() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-primary-bg/80 backdrop-blur-sm relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="about" className="py-10 sm:py-16 md:py-20 bg-primary-bg/80 backdrop-blur-sm relative">
+        <div className="max-w-7xl mx-auto w-full px-2 sm:px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollFloat
               animationDuration={1}
@@ -464,7 +470,7 @@ export default function VoiceITWebsite() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <Card className="bg-primary-bg border-accent-orange hover:shadow-lg transition-all duration-300 hover:border-accent-orange/30">
               <CardContent className="p-8 text-center">
                 <div className="h-[300px] w-full">
@@ -508,8 +514,8 @@ export default function VoiceITWebsite() {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="py-20 bg-primary-bg/80 backdrop-blur-sm relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="team" className="py-10 sm:py-16 md:py-20 bg-primary-bg/80 backdrop-blur-sm relative overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full px-2 sm:px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollFloat
               animationDuration={0.5}
@@ -535,9 +541,9 @@ export default function VoiceITWebsite() {
             </p>
           </div>
 
-          <div className="w-full h-full py-20">
+          <div className="w-full h-full py-10 sm:py-16 md:py-20 overflow-x-auto">
             <Carousel items={teamMembers.map((member, index) => (
-              <div key={member.image} className="px-2">
+              <div key={member.image} className="px-2 min-w-0">
                 <TiltedCard
                   imageSrc={member.image}
                   altText="Team Member"
@@ -559,8 +565,8 @@ export default function VoiceITWebsite() {
 
       {/* Footer */}
       <footer className="bg-primary-bg border-t border-neutral-light py-8">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="container mx-auto w-full px-2 sm:px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">Voice IT</h3>
               <p className="text-neutral-light">

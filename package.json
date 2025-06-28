@@ -48,11 +48,7 @@
     "date-fns": "4.1.0",
     "dayjs": "^1.11.13",
     "embla-carousel-react": "8.5.1",
-<<<<<<< HEAD
     "framer-motion": "^12.19.2",
-=======
-    "framer-motion": "^12.16.0",
->>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
     "googleapis": "^150.0.1",
     "gsap": "^3.13.0",
     "input-otp": "1.4.1",
@@ -87,8 +83,4 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8

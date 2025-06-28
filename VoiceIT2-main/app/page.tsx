@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, Suspense, lazy } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -36,17 +36,8 @@ import { EvervaultCard, Icon } from "@/components/ui/evervault-card"
 import TypewriterEffect from '@/components/TypewriterEffect';
 import Aurora from '@/components/ui/aurora';
 import Particles from '@/components/ui/Particles';
-
-// Lazy load heavy components
-const Radio3D = lazy(() => import('@/components/ui/Radio3D'));
-
-// Loading component for lazy-loaded components
-const Radio3DLoader = () => (
-  <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 max-w-full max-h-[60vw] min-w-0 min-h-0 flex items-center justify-center bg-gradient-to-br from-accent-orange/20 to-white/20 rounded-lg animate-pulse">
-    <div className="text-accent-orange text-lg font-semibold">Loading...</div>
-  </div>
-);
-
+import Radio3D from '@/components/ui/Radio3D';
+  
 export default function VoiceITWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -407,14 +398,14 @@ export default function VoiceITWebsite() {
                 </ScrollFloat>
                 {/* 3D Radio Model */}
                 <div className="flex justify-center items-center">
-                  <Suspense fallback={<Radio3DLoader />}>
+                  <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 max-w-full max-h-[60vw] min-w-0 min-h-0">
                     <Radio3D
                       size={300}
                       rotationSpeed={0.01}
                       enableRotation={true}
                       className="w-full h-full"
                     />
-                  </Suspense>
+                  </div>
                 </div>
                 <p className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl text-text-secondary max-w-6xl mx-auto leading-relaxed font-light break-words">
                   <VariableProximity

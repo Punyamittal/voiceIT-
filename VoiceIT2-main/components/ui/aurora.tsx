@@ -1,146 +1,217 @@
-"use client";
+import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
+import { useEffect, useRef } from "react";
 
-import React, { useEffect, useRef, memo, useCallback } from 'react';
+import './aurora.css';
 
-interface AuroraProps {
-  colorStops?: string[];
-  blend?: number;
-  amplitude?: number;
-  speed?: number;
-  className?: string;
+const VERT = `#version 300 es
+in vec2 position;
+void main() {
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
+
+const FRAG = `#version 300 es
+precision highp float;
+
+uniform float uTime;
+uniform float uAmplitude;
+uniform vec3 uColorStops[3];
+uniform vec2 uResolution;
+uniform float uBlend;
+
+out vec4 fragColor;
+
+vec3 permute(vec3 x) {
+  return mod(((x * 34.0) + 1.0) * x, 289.0);
 }
 
-const Aurora = memo(({
-  colorStops = ["#FF6B00", "#FFFFFF", "#FF6B00"],
-  blend = 0.5,
-  amplitude = 1.0,
-  speed = 0.5,
-  className = ""
-}: AuroraProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const timeRef = useRef(0);
+float snoise(vec2 v){
+  const vec4 C = vec4(
+      0.211324865405187, 0.366025403784439,
+      -0.577350269189626, 0.024390243902439
+  );
+  vec2 i  = floor(v + dot(v, C.yy));
+  vec2 x0 = v - i + dot(i, C.xx);
+  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
 
-  // Performance optimization: Debounced resize handler
-  const handleResize = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  vec3 p = permute(
+      permute(i.y + vec3(0.0, i1.y, 1.0))
+    + i.x + vec3(0.0, i1.x, 1.0)
+  );
 
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * window.devicePixelRatio;
-    canvas.height = rect.height * window.devicePixelRatio;
-    
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    }
-  }, []);
+  vec3 m = max(
+      0.5 - vec3(
+          dot(x0, x0),
+          dot(x12.xy, x12.xy),
+          dot(x12.zw, x12.zw)
+      ), 
+      0.0
+  );
+  m = m * m;
+  m = m * m;
 
-  // Optimized animation loop
-  const animate = useCallback(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
-    if (!canvas || !ctx) return;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
 
-    const rect = canvas.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
 
-    // Clear canvas efficiently
-    ctx.clearRect(0, 0, width, height);
+struct ColorStop {
+  vec3 color;
+  float position;
+};
 
-    // Create gradient with optimized performance
-    const gradient = ctx.createLinearGradient(0, 0, width, height);
-    
-    // Simplified color stops for better performance
-    const time = timeRef.current * speed;
-    const offset1 = (Math.sin(time * 0.5) + 1) * 0.3;
-    const offset2 = (Math.cos(time * 0.3) + 1) * 0.4;
-    const offset3 = (Math.sin(time * 0.7) + 1) * 0.3;
+#define COLOR_RAMP(colors, factor, finalColor) {              \
+  int index = 0;                                            \
+  for (int i = 0; i < 2; i++) {                               \
+     ColorStop currentColor = colors[i];                    \
+     bool isInBetween = currentColor.position <= factor;    \
+     index = int(mix(float(index), float(i), float(isInBetween))); \
+  }                                                         \
+  ColorStop currentColor = colors[index];                   \
+  ColorStop nextColor = colors[index + 1];                  \
+  float range = nextColor.position - currentColor.position; \
+  float lerpFactor = (factor - currentColor.position) / range; \
+  finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \
+}
 
-    gradient.addColorStop(offset1, colorStops[0] || "#FF6B00");
-    gradient.addColorStop(offset2, colorStops[1] || "#FFFFFF");
-    gradient.addColorStop(offset3, colorStops[2] || "#FF6B00");
+void main() {
+  vec2 uv = gl_FragCoord.xy / uResolution;
+  
+  ColorStop colors[3];
+  colors[0] = ColorStop(uColorStops[0], 0.0);
+  colors[1] = ColorStop(uColorStops[1], 0.5);
+  colors[2] = ColorStop(uColorStops[2], 1.0);
+  
+  vec3 rampColor;
+  COLOR_RAMP(colors, uv.x, rampColor);
+  
+  float height = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uTime * 0.25)) * 0.5 * uAmplitude;
+  height = exp(height);
+  height = (uv.y * 2.0 - height + 0.2);
+  float intensity = 0.6 * height;
+  
+  float midPoint = 0.20;
+  float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
+  
+  vec3 auroraColor = intensity * rampColor;
+  
+  fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
+}
+`;
 
-    // Draw aurora with simplified geometry for better performance
-    ctx.fillStyle = gradient;
-    ctx.globalAlpha = blend;
-    
-    // Use simpler path for better performance
-    ctx.beginPath();
-    ctx.moveTo(0, height * 0.3);
-    
-    // Simplified wave pattern
-    for (let x = 0; x <= width; x += 20) { // Reduced resolution for performance
-      const y = height * 0.3 + 
-                Math.sin(x * 0.01 + time) * amplitude * 50 +
-                Math.sin(x * 0.005 + time * 0.5) * amplitude * 30;
-      ctx.lineTo(x, y);
-    }
-    
-    ctx.lineTo(width, height);
-    ctx.lineTo(0, height);
-    ctx.closePath();
-    ctx.fill();
+export default function Aurora(props) {
+  const {
+    colorStops = ["#5227FF", "#7cff67", "#5227FF"],
+    amplitude = 1.0,
+    blend = 0.5
+  } = props;
+  const propsRef = useRef(props);
+  propsRef.current = props;
 
-    // Add second layer for depth (simplified)
-    ctx.globalAlpha = blend * 0.6;
-    ctx.beginPath();
-    ctx.moveTo(0, height * 0.4);
-    
-    for (let x = 0; x <= width; x += 30) { // Further reduced resolution
-      const y = height * 0.4 + 
-                Math.sin(x * 0.008 + time * 0.8) * amplitude * 40 +
-                Math.sin(x * 0.003 + time * 0.3) * amplitude * 20;
-      ctx.lineTo(x, y);
-    }
-    
-    ctx.lineTo(width, height);
-    ctx.lineTo(0, height);
-    ctx.closePath();
-    ctx.fill();
-
-    timeRef.current += 0.016; // Fixed time step
-    animationRef.current = requestAnimationFrame(animate);
-  }, [colorStops, blend, amplitude, speed]);
+  const ctnDom = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const ctn = ctnDom.current;
+    if (!ctn) return;
 
-    // Start animation
-    animate();
-
-    // Debounced resize handler
-    let resizeTimeout: NodeJS.Timeout;
-    const debouncedResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(handleResize, 100);
+    let isVisible = true;
+    const handleVisibilityChange = () => {
+      isVisible = !document.hidden;
     };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    window.addEventListener('resize', debouncedResize);
+    const renderer = new Renderer({
+      alpha: true,
+      premultipliedAlpha: true,
+      antialias: true
+    });
+    const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.canvas.style.backgroundColor = 'transparent';
+
+    let program;
+
+    function resize() {
+      if (!ctn) return;
+      const width = ctn.offsetWidth;
+      const height = ctn.offsetHeight;
+      renderer.setSize(width, height);
+      if (program) {
+        program.uniforms.uResolution.value = [width, height];
+      }
+    }
+    window.addEventListener("resize", resize);
+
+    const geometry = new Triangle(gl);
+    if (geometry.attributes.uv) {
+      delete geometry.attributes.uv;
+    }
+
+    const colorStopsArray = colorStops.map((hex) => {
+      const c = new Color(hex);
+      return [c.r, c.g, c.b];
+    });
+
+    program = new Program(gl, {
+      vertex: VERT,
+      fragment: FRAG,
+      uniforms: {
+        uTime: { value: 0 },
+        uAmplitude: { value: amplitude },
+        uColorStops: { value: colorStopsArray },
+        uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
+        uBlend: { value: blend }
+      }
+    });
+
+    const mesh = new Mesh(gl, { geometry, program });
+    ctn.appendChild(gl.canvas);
+
+    let animateId = 0;
+    const update = (t) => {
+      if (!isVisible) {
+        animateId = requestAnimationFrame(update);
+        return;
+      }
+      animateId = requestAnimationFrame(update);
+      const { time = t * 0.01, speed = 1.0 } = propsRef.current;
+      program.uniforms.uTime.value = time * speed * 0.1;
+      program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
+      program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
+      const stops = propsRef.current.colorStops ?? colorStops;
+      program.uniforms.uColorStops.value = stops.map((hex) => {
+        const c = new Color(hex);
+        return [c.r, c.g, c.b];
+      });
+      renderer.render({ scene: mesh });
+    };
+    animateId = requestAnimationFrame(update);
+
+    resize();
 
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
+      cancelAnimationFrame(animateId);
+      window.removeEventListener("resize", resize);
+      if (ctn && gl.canvas.parentNode === ctn) {
+        ctn.removeChild(gl.canvas);
       }
-      window.removeEventListener('resize', debouncedResize);
-      clearTimeout(resizeTimeout);
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [animate, handleResize]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [amplitude]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className={`w-full h-full ${className}`}
-      style={{ 
-        display: 'block',
-        willChange: 'transform', // Optimize for animations
-      }}
-    />
-  );
-});
-
-Aurora.displayName = 'Aurora';
-
-export default Aurora;
+  return <div ref={ctnDom} className="aurora-container" />;
+}

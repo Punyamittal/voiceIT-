@@ -3,11 +3,20 @@ import { exportSheetsAndNotifyLeads } from "@/lib/export-service";
 import fs from "fs";
 import path from "path";
 
-const EXPORT_ALLOWED_AFTER = new Date(process.env.EXPORT_ALLOWED_AFTER!);
+const EXPORT_ALLOWED_AFTER_STR = process.env.EXPORT_ALLOWED_AFTER;
+const EXPORT_ALLOWED_AFTER = EXPORT_ALLOWED_AFTER_STR ? new Date(EXPORT_ALLOWED_AFTER_STR) : null;
 
 export async function POST() {
   try {
     const now = new Date();
+
+    if (!EXPORT_ALLOWED_AFTER || isNaN(EXPORT_ALLOWED_AFTER.getTime())) {
+      console.error("Invalid EXPORT_ALLOWED_AFTER environment variable:", EXPORT_ALLOWED_AFTER_STR);
+      return NextResponse.json(
+        { error: "Server configuration error: EXPORT_ALLOWED_AFTER is not set or is invalid." },
+        { status: 500 }
+      );
+    }
 
     // 🚫 Block export if recruitment is still open
     if (now <= EXPORT_ALLOWED_AFTER) {

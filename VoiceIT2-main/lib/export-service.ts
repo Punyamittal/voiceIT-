@@ -12,14 +12,21 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function exportSheetsAndNotifyLeads() {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.error("❌ Email user or password not set in environment variables.");
+    throw new Error("Email configuration missing.");
+  }
+
   for (const [deptKey, deptInfo] of Object.entries(departments)) {
     try {
+      console.log(`Attempting to get data for department: ${deptKey}`);
       const data = await getTabData(deptKey);
 
       if (!data || data.length === 0) {
         console.warn(`No data found for ${deptKey}, skipping...`);
         continue;
       }
+      console.log(`Data fetched for ${deptKey}. Rows: ${data.length}`);
 
       const ws = XLSX.utils.aoa_to_sheet(data);
       const wb = XLSX.utils.book_new();

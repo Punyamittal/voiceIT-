@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { google } from "googleapis";
 import { departments } from "@/config/departmentConfig"; // Assuming this exists and is needed
 
@@ -50,6 +51,8 @@ export async function exportSheetsAndNotifyLeads(): Promise<string> {
   return csvRows.join("\n");
 }
 =======
+=======
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
 import { departments } from '@/config/departmentConfig';
 import { getTabData } from './sheet-service';
 import * as XLSX from 'xlsx';
@@ -100,4 +103,7 @@ export async function exportSheetsAndNotifyLeads() {
     }
   }
 }
+<<<<<<< HEAD
 >>>>>>> ba4c3f986f9e946e11d74ba4bf6b0df66242d2f1
+=======
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8

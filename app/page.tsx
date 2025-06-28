@@ -32,10 +32,17 @@ import { AudioPlayer } from '@/components/AudioPlayer'
 import Image from "next/image"
 import TiltedCard from '../components/TiltedCard'
 import { Carousel, Card as AppleCard } from "@/components/ui/apple-cards-carousel"
+<<<<<<< HEAD
 import Folder from '@/components/Folder'
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card"
 import TypewriterEffect from '@/components/TypewriterEffect'; // Import the new TypewriterEffect component
 
+=======
+import { EvervaultCard, Icon } from "@/components/ui/evervault-card"
+import TypewriterEffect from '@/components/TypewriterEffect';
+import Aurora from '@/components/ui/aurora';
+  
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
 export default function VoiceITWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -208,7 +215,20 @@ export default function VoiceITWebsite() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen relative">
+=======
+    <div className="min-h-screen relative bg-primary-bg/80 backdrop-blur-sm">
+      {/* Aurora Background */}
+      <div className="fixed left-0 top-0 w-full h-[70vh] pointer-events-none z-[-1]">
+        <Aurora
+          colorStops={["#FF6B00", "#FFFFFF", "#FF6B00"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={0.5}
+        />
+      </div>
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
       {/* Background Music Player */}
       <div className="fixed bottom-4 right-4 z-50">
         <AudioPlayer 
@@ -344,7 +364,12 @@ export default function VoiceITWebsite() {
             <div className="space-y-8">
               <div className="space-y-2">
                 <TypewriterEffect
+<<<<<<< HEAD
                   words={["Voice IT", "वॉइस आईटी", "വോയ്സ് ഐടി", "వాయిస్ ఐటి", "வாய்ஸ் ஐடி", "ವಾಯ್ಸ್ ಐಟಿ"]}
+=======
+                  words={["Voice IT", "वॉइस इट", "വോയിസ് ഇറ്റ്", "వాయిస్ ఇట్", "வாய்ஸ் இட்", "ವಾಯ್ಸ್ ಇಟ್"]
+                  }
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
                   className="text-7xl font-bold text-accent-orange"
                 />
                 <ScrollFloat
@@ -376,7 +401,11 @@ export default function VoiceITWebsite() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
+<<<<<<< HEAD
                   size="md"
+=======
+                  size="lg"
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
                   className="bg-accent-orange hover:bg-accent-orange/90 text-white px-8 py-3 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-accent-orange/25"
                   onClick={() => window.location.href = "/recruitment"}
                 >
@@ -500,7 +529,11 @@ export default function VoiceITWebsite() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollFloat
+<<<<<<< HEAD
               animationDuration={1}
+=======
+              animationDuration={0.5}
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
               ease="back.inOut(2)"
               scrollStart="center bottom+=50%"
               scrollEnd="bottom bottom-=40%"
@@ -588,17 +621,47 @@ export default function VoiceITWebsite() {
             </p>
             <p className="text-neutral-light mt-2">
               Created and Designed by{" "}
+<<<<<<< HEAD
               <a 
                 href="https://www.linkedin.com/in/punya-mittal-a1122520b/" 
                 target="_blank" 
+=======
+              <a
+                href="https://www.linkedin.com/in/punya-mittal-a1122520b/"
+                target="_blank"
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
                 rel="noopener noreferrer"
                 className="text-accent hover:text-accent/80 font-medium transition-colors duration-200 inline-flex items-center gap-1"
               >
                 Punya Mittal
+<<<<<<< HEAD
                 <svg 
                   className="w-4 h-4" 
                   fill="currentColor" 
                   viewBox="0 0 24 24" 
+=======
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+              <span className="mx-1">and</span>
+              <a
+                href="https://www.linkedin.com/in/hirendrabalaji/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-medium transition-colors duration-200 inline-flex items-center gap-1"
+              >
+                Hirendra Balaji
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
                   aria-hidden="true"
                 >
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>

@@ -59,6 +59,7 @@ const Squares = ({
           ctx.strokeRect(squareX, squareY, squareSize, squareSize);
         }
       }
+<<<<<<< HEAD
 
       const gradient = ctx.createRadialGradient(
         canvas.width / 2,
@@ -72,6 +73,8 @@ const Squares = ({
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+=======
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
     };
 
     const updateAnimation = () => {

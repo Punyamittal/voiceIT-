@@ -6,5 +6,20 @@
   position: fixed; /* Position fixed to cover the entire viewport */
   top: 0;
   left: 0;
+<<<<<<< HEAD
   z-index: -1; /* Send it to the background */
+=======
+  z-index: -2; /* Move further back to allow overlay above */
+}
+
+.squares-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Darker translucent black */
+  z-index: -1; /* Above squares, below content */
+  pointer-events: none;
+>>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
 }

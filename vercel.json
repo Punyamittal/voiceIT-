@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "functions": {
+    "app/api/form/export/route.ts": {
+      "runtime": "nodejs18.x",
+      "memory": 512,
+      "maxDuration": 60,
+      "schedule": "30 18 * * *"
+    }
+  }
+}

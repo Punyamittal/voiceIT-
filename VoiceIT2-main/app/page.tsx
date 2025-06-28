@@ -32,10 +32,11 @@ import { AudioPlayer } from '@/components/AudioPlayer'
 import Image from "next/image"
 import TiltedCard from '../components/TiltedCard'
 import { Carousel, Card as AppleCard } from "@/components/ui/apple-cards-carousel"
-import Folder from '@/components/Folder'
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card"
-import TypewriterEffect from '@/components/TypewriterEffect'; // Import the new TypewriterEffect component
+import TypewriterEffect from '@/components/TypewriterEffect';
 import Aurora from '@/components/ui/aurora';
+import Particles from '@/components/ui/Particles';
+import Radio3D from '@/components/ui/Radio3D';
   
 export default function VoiceITWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -347,16 +348,36 @@ export default function VoiceITWebsite() {
       {/* Hero Section */}
       <section
         id="home"
-        className="pt-16 min-h-screen flex items-center relative"
+        className="pt-16 min-h-screen flex items-center justify-center relative"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-2">
+        {/* Particles Background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <Particles
+            particleCount={300}
+            particleSpread={15}
+            speed={0.05}
+            particleColors={["#FF6B00", "#FFFFFF", "#FF8C42", "#FFA500"]}
+            moveParticlesOnHover={true}
+            particleHoverFactor={0.5}
+            alphaParticles={true}
+            particleBaseSize={120}
+            sizeRandomness={0.8}
+            cameraDistance={25}
+            disableRotation={false}
+            className="w-full h-full"
+          />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center relative z-10">
+          <div className="space-y-16">
+            <div className="space-y-12">
+              <div>
                 <TypewriterEffect
-                  words={["Voice IT", "वॉइस इट", "വോയിസ് ഇറ്റ്", "వాయిస్ ఇట్", "வாய்ஸ் இட்", "ವಾಯ್ಸ್ ಇಟ್"]
-                  }
-                  className="text-7xl font-bold text-accent-orange"
+                  words={["Voice IT", "वॉइस इट", "വോയിസ് इट", "వాయిస్ ఇట్", "வாய்ஸ் இட்", "ವಾಯ್ಸ್ ಇಟ್"]}
+                  className="text-7xl md:text-10xl lg:text-[12rem] font-black text-accent-orange tracking-tight leading-none"
+                  typingSpeed={200}
+                  deletingSpeed={150}
+                  delayBetweenWords={2000}
                 />
                 <ScrollFloat
                   animationDuration={1}
@@ -364,19 +385,35 @@ export default function VoiceITWebsite() {
                   scrollStart="center bottom+=50%"
                   scrollEnd="bottom bottom-=40%"
                   stagger={0.03}
-                  containerClassName="text-6xl font-bold text-text-primary"
+                  containerClassName="text-6xl md:text-9xl lg:text-[11rem] font-black text-text-primary tracking-tight leading-none mb-[20px]"
                   scrollContainerRef={scrollContainerRef}
                 >
                   <TypewriterEffect
                     words={["Voice IT", "वॉइस आईटी", "வாய்ஸ் ஐடி", "వాయిస్ ఐటి", "വോയ്സ് ഐടി"]}
-                    className="text-6xl font-bold text-text-primary"
+                    className="text-6xl md:text-9xl lg:text-[11rem] font-black text-text-primary tracking-tight leading-none"
+                    typingSpeed={200}
+                    deletingSpeed={150}
+                    delayBetweenWords={2000}
                   />
                 </ScrollFloat>
-                <p className="text-xl text-text-secondary max-w-lg">
+
+                {/* 3D Radio Model */}
+                <div className="flex justify-center items-center">
+                  <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                    <Radio3D
+                      size={300}
+                      rotationSpeed={0.01}
+                      enableRotation={true}
+                      className="w-full h-full"
+                    />
+                  </div>
+                </div>
+
+                <p className="text-2xl md:text-4xl lg:text-5xl text-text-secondary max-w-6xl mx-auto leading-relaxed font-light">
                   <VariableProximity
                     label="Where voices come alive and stories find their rhythm. Join VIT Chennai's premier radio community."
-                    className="text-xl text-text-secondary"
-                    fromFontVariationSettings="'wght' 400, 'opsz' 9"
+                    className="text-2xl md:text-4xl lg:text-5xl text-text-secondary font-light"
+                    fromFontVariationSettings="'wght' 300, 'opsz' 9"
                     toFontVariationSettings="'wght' 1000, 'opsz' 40"
                     containerRef={heroTextRef as React.RefObject<HTMLElement>}
                     radius={100}
@@ -385,50 +422,14 @@ export default function VoiceITWebsite() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex justify-center">
                 <Button
                   size="lg"
-                  className="bg-accent-orange hover:bg-accent-orange/90 text-white px-8 py-3 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-accent-orange/25"
+                  className="bg-accent-orange hover:bg-accent-orange/90 text-white px-12 py-6 rounded-full font-black text-2xl md:text-3xl lg:text-4xl transition-all hover:shadow-2xl hover:shadow-accent-orange/25 transform hover:scale-105"
                   onClick={() => window.location.href = "/recruitment"}
                 >
                   Join the Club
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-accent-warm text-accent-warm hover:bg-accent-warm hover:text-white px-8 py-3 rounded-full font-semibold transition-all"
-                  onClick={() => scrollToSection("live")}
-                >
-                  <Play className="w-4 h-4 mr-2" />
-                  Listen Live
-                </Button>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="relative bg-gradient-to-br from-accent-orange/10 to-accent-warm/10 rounded-3xl p-8 backdrop-blur-sm border border-accent-orange">
-                <div className="flex items-center justify-center space-x-4 mb-6">
-                  <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-                  <span className="text-text-secondary font-medium">ON AIR</span>
-                </div>
-                <div className="flex items-center justify-center mb-8">
-                  <div className="bg-accent-orange p-6 rounded-full">
-                    <Radio className="h-12 w-12 text-white" />
-                  </div>
-                </div>
-                <div className="h-20 flex justify-center space-x-2 mb-4">
-                  {barHeights.map((height, i) => (
-                    <div
-                      key={i}
-                      className="w-2 bg-accent-orange rounded-full transition-all duration-500"
-                      style={{
-                        height: `${height}px`,
-                        marginTop: 'auto'
-                      }}
-                    ></div>
-                  ))}
-                </div>
-                <p className="text-center text-text-secondary">Broadcasting creativity across campus</p>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import './globals.css'
 import Squares from '@/components/Squares'
 import { ThemeProvider } from '@/components/theme-provider'
 import { AudioProvider } from "@/contexts/AudioContext"
+import GlobalBackground from '@/components/GlobalBackground'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -40,6 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AudioProvider>
+            <GlobalBackground />
             <Squares
               speed={0.5}
               squareSize={40}

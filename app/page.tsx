@@ -32,9 +32,8 @@ import { AudioPlayer } from '@/components/AudioPlayer'
 import Image from "next/image"
 import TiltedCard from '../components/TiltedCard'
 import { Carousel, Card as AppleCard } from "@/components/ui/apple-cards-carousel"
-import Folder from '@/components/Folder'
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card"
-import TypewriterEffect from '@/components/TypewriterEffect'; // Import the new TypewriterEffect component
+import TypewriterEffect from '@/components/TypewriterEffect';
 import Aurora from '@/components/ui/aurora';
   
 export default function VoiceITWebsite() {

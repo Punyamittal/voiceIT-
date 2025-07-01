@@ -144,7 +144,7 @@ const RecruitmentPage = () => {
                       <Youtube className="h-5 w-5 text-accent-warm group-hover:rotate-12 transition-transform duration-300" />
                     </a>
                     <a
-                      href="https://open.spotify.com/show/your-show-id"
+                      href="https://open.spotify.com/show/2j47V3HGbG0TY2qkrFPBoA?si=ESykZWXMSvO7gvszxXSX4w&nd=1&dlsi=87b3d8d7783b4410"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group p-2 bg-accent-warm/10 rounded-full hover:bg-accent-warm/20 transition-all duration-300 hover:scale-110"

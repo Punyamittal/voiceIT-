@@ -60,13 +60,13 @@ const PAST_EVENTS_DATA = [
 
 const SPONSORS_DATA = [
   {
-    name: "TechCorp",
+    name: "SGR 777",
     logo: "/placeholder-logo.png",
     description: "Leading technology solutions provider",
     tier: "Platinum Sponsor"
   },
   {
-    name: "MediaHub",
+    name: "SRS APPLIANCE",
     logo: "/placeholder-logo.png", 
     description: "Digital media and broadcasting experts",
     tier: "Gold Sponsor"
@@ -77,12 +77,7 @@ const SPONSORS_DATA = [
     description: "Professional audio equipment manufacturer",
     tier: "Silver Sponsor"
   },
-  {
-    name: "CampusConnect",
-    logo: "/placeholder-logo.png",
-    description: "Student engagement platform",
-    tier: "Bronze Sponsor"
-  }
+
 ];
 
 const NAV_ITEMS = [
@@ -292,13 +287,14 @@ const EventsPage = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-4 gap-8">
+            {/* ✅ Fixed Grid and Card Alignment */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {SPONSORS_DATA.map((sponsor, index) => (
                 <Card
                   key={index}
-                  className="bg-neutral-lightest border-accent-orange hover:shadow-lg transition-all duration-300 hover:border-accent-orange/50"
+                  className="flex flex-col justify-between h-full bg-neutral-lightest border-accent-orange hover:shadow-lg transition-all duration-300 hover:border-accent-orange/50"
                 >
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-6 text-center flex flex-col h-full">
                     <div className="w-20 h-20 mx-auto mb-4 bg-accent-orange/10 rounded-full flex items-center justify-center">
                       <Image
                         src={sponsor.logo}
@@ -310,9 +306,11 @@ const EventsPage = () => {
                     </div>
                     <h3 className="text-xl font-semibold text-text-primary mb-2">{sponsor.name}</h3>
                     <p className="text-text-secondary text-sm mb-3">{sponsor.description}</p>
-                    <Badge className="bg-accent-orange/10 text-accent-orange border-accent-orange/20">
-                      {sponsor.tier}
-                    </Badge>
+                    <div className="mt-auto">
+                      <Badge className="bg-accent-orange/10 text-accent-orange border-accent-orange/20">
+                        {sponsor.tier}
+                      </Badge>
+                    </div>
                   </CardContent>
                 </Card>
               ))}

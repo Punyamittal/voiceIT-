@@ -37,6 +37,7 @@ import TypewriterEffect from '@/components/TypewriterEffect';
 import Aurora from '@/components/ui/aurora';
 import Particles from '@/components/ui/Particles';
 import Radio3D from '@/components/ui/Radio3D';
+import ScrollVelocity from '@/components/ui/ScrollVelocity';
   
 export default function VoiceITWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -353,7 +354,7 @@ export default function VoiceITWebsite() {
         {/* Particles Background */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <Particles
-            particleCount={300}
+            particleCount={8000}
             particleSpread={15}
             speed={0.05}
             particleColors={["#FF6B00", "#FFFFFF", "#FF8C42", "#FFA500"]}
@@ -369,6 +370,7 @@ export default function VoiceITWebsite() {
         </div>
         
         <div className="max-w-7xl mx-auto w-full px-2 sm:px-4 md:px-6 lg:px-8 py-10 sm:py-16 md:py-20 text-center relative z-10">
+          
           <div className="space-y-8 sm:space-y-12 md:space-y-16">
             <div className="space-y-6 sm:space-y-8 md:space-y-12">
               <div>
@@ -407,18 +409,23 @@ export default function VoiceITWebsite() {
                     />
                   </div>
                 </div>
-                <p className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl text-text-secondary max-w-6xl mx-auto leading-relaxed font-light break-words">
-                  <VariableProximity
-                    label="Where voices come alive and stories find their rhythm. Join VIT Chennai's premier radio community."
-                    className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl text-text-secondary font-light break-words"
-                    fromFontVariationSettings="'wght' 300, 'opsz' 9"
-                    toFontVariationSettings="'wght' 1000, 'opsz' 40"
-                    containerRef={heroTextRef as React.RefObject<HTMLElement>}
-                    radius={100}
-                    falloff="linear"
-                  />
-                </p>
               </div>
+              <ScrollVelocity
+                texts={["Where voices come alive and stories find their rhythm."]}
+                velocity={30}
+                numCopies={20}
+                damping={60}
+                stiffness={300}
+                className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-orange via-accent-warm to-accent-orange text-center tracking-widest digital-board"
+              />
+              <ScrollVelocity
+                texts={["Join VIT Chennai's premier radio community."]}
+                velocity={-28}
+                numCopies={20}
+                damping={60}
+                stiffness={300}
+                className="text-lg sm:text-xl md:text-3xl font-bold text-accent-orange text-center tracking-widest digital-board"
+              />
               <div className="flex justify-center">
                 <Button
                   size="lg"

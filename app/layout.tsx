@@ -44,16 +44,10 @@ export default function RootLayout({
               speed={0.5}
               squareSize={40}
               direction='diagonal' // up, down, left, right, diagonal
-<<<<<<< HEAD
-              borderColor='#fff'
-              hoverFillColor='#222'
-            />
-=======
               borderColor='#FFA500'
               hoverFillColor='#222'
             />
             <div className="squares-overlay" />
->>>>>>> 704f5f0596c7c85a2c3843ede71436367d1461a8
             {children}
           </AudioProvider>
         </ThemeProvider>

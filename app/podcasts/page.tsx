@@ -198,7 +198,7 @@ const PodcastsPage = () => {
                 <div className="space-y-4">
                   {[
                     {
-                      title: "Tech Talk Tuesday",
+                      title: "Born To Shine:ThaIapathy Vijay",
                       icon: <Radio className="h-6 w-6 text-accent-warm" />,
                       description: "Latest tech trends and discussions",
                       audioUrl: "/podcasts/tech-talk-ep1.mp3"
@@ -240,7 +240,7 @@ const PodcastsPage = () => {
                       <span className="font-medium">Watch on YouTube</span>
                     </a>
                     <a
-                      href="https://open.spotify.com/show/your-show-id"
+                      href="https://open.spotify.com/show/2j47V3HGbG0TY2qkrFPBoA?si=ESykZWXMSvO7gvszxXSX4w&nd=1&dlsi=87b3d8d7783b4410"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group flex items-center gap-2 px-4 py-2 bg-accent-warm/10 hover:bg-accent-warm/20 text-accent-warm rounded-lg transition-all duration-300 hover:scale-105"
@@ -278,7 +278,7 @@ const PodcastsPage = () => {
           <div className="w-full h-full py-20">
             <Carousel items={[
               {
-                title: "Tech Talk Tuesday - Episode 1",
+                title: "Born To Shine:ThaIapathy Vijay",
                 description: "Latest tech trends and discussions",
                 image: "/placeholder.jpg",
                 audioUrl: "/podcasts/tech-talk-ep1.mp3"

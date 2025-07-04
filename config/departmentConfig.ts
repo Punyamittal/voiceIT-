@@ -9,7 +9,7 @@ export const departments: Record<string, Department> = {
   "rj-tamil": {
     name: "RJ Tamil",
     description: "Host, engage and entertain Tamil-speaking audiences.",
-    email: ["rj.tamil@club.com"],
+    email: ["rajaraman.k2023@vitstudent.ac.in,afzalahamed.a2023@vitstudent.ac.in,jeromeemmanuel.c2023@vitstudent.ac.in,mohanaramanan.d2023@vitstudent.ac.in"],
     questions: [
       "Why are you interested in this department?",
       "Explain your previous experience in this department.",
@@ -17,21 +17,10 @@ export const departments: Record<string, Department> = {
       "Please provide links to your recordings/projects.",
     ],
   },
-  "design": {
-    name: "Design",
-    description: "Create visuals for club promotions and events.",
-    email: ["design@club.com"],
-    questions: [
-      "Why are you interested in this department?",
-      "Explain your previous experience in design.",
-      "Do you have a design portfolio?",
-      "Please provide portfolio links (Dribbble, Behance, etc.).",
-    ],
-  },
   "technical": {
     name: "Technical",
     description: "Build websites, apps, and solve tech issues.",
-    email: ["hirendrabalaji3@gmail.com","black.goku.007.279@gmail.com"],
+    email: ["punya.mittal2024@vitstudent.ac.in","rishika.v2023@vitstudent.ac.in"],
     questions: [
       "Why are you interested in this department?",
       "What technical skills do you have?",
@@ -42,7 +31,7 @@ export const departments: Record<string, Department> = {
   "content": {
     name: "Content",
     description: "Write compelling content for campaigns, events, and social media.",
-    email: ["content@club.com"],
+    email: ["monica.s2023@vitstudent.ac.in,amirthavahini.v2022@vitstudent.ac.in"],
     questions: [
       "Why are you interested in this department?",
       "Have you written blogs, scripts, or stories before?",
@@ -52,7 +41,7 @@ export const departments: Record<string, Department> = {
   "hr": {
     name: "HR",
     description: "Manage communication and coordination between club members.",
-    email: ["hr@club.com"],
+    email: ["shanmitha.t2023@vitstudent.ac.in"],
     questions: [
       "Why are you interested in this department?",
       "Have you worked in teams or led any group initiatives before?",
@@ -61,7 +50,7 @@ export const departments: Record<string, Department> = {
   "editing": {
     name: "Editing",
     description: "Edit videos, podcasts, and other media content.",
-    email: ["editing@club.com"],
+    email: ["adithya.s2023@vitstudent.ac.in,munisaparji.vs2023@vitstudent.ac.in"],
     questions: [
       "Why are you interested in editing?",
       "What tools do you use (Premiere Pro, DaVinci, etc.)?",
@@ -71,36 +60,26 @@ export const departments: Record<string, Department> = {
   "camera": {
     name: "Camera",
     description: "Capture moments, events, and club activities with a creative eye.",
-    email: ["camera@club.com"],
+    email: ["annamalai.n2023@vitstudent.ac.in"],
     questions: [
       "Why are you interested in photography/videography?",
       "Do you have experience handling camera equipment?",
       "Provide links to your media work.",
     ],
   },
-  "events-and-sponsors": {
-    name: "Events & Sponsors",
+  "events-and-sponsorship": {
+    name: "Events & Sponsorship",
     description: "Plan events and approach sponsors for collaborations.",
-    email: ["events@club.com"],
+    email: ["kaushik.saravanan2022@vitstudent.ac.in"],
     questions: [
       "Why are you interested in this department?",
       "Have you organized or helped in any events before?",
     ],
   },
-  "sponsorship": {
-    name: "Sponsorship",
-    description: "Secure sponsorships and build partnerships for club activities.",
-    email: ["sponsorship@club.com"],
-    questions: [
-      "Why are you interested in sponsorship?",
-      "Have you pitched ideas or negotiated before?",
-    ],
-  },
-
   "rj-english": {
     name: "RJ English",
     description: "Engage and broadcast to English-speaking audiences.",
-    email: ["rj.english@club.com"],
+    email: ["tannya.pasricha2023@vitstudent.ac.in"],
     questions: [
       "Why are you interested in RJ (English)?",
       "Any prior experience in speaking, anchoring or podcasting?",
@@ -110,7 +89,7 @@ export const departments: Record<string, Department> = {
   "rj-telugu": {
     name: "RJ Telugu",
     description: "Engage and broadcast to Telugu-speaking audiences.",
-    email: ["rj.english@club.com"],
+    email: ["abhishek.ts2023@vitstudent.ac.in,thipireddy.nishanth2023@vitstudent.ac.in"],
     questions: [
       "Why are you interested in RJ (English)?",
       "Any prior experience in speaking, anchoring or podcasting?",
@@ -130,12 +109,11 @@ export const departments: Record<string, Department> = {
   "rj-hindi": {
     name: "RJ Hindi",
     description: "Engage and broadcast to hindi-speaking audiences.",
-    email: ["rj.english@club.com"],
+    email: ["aman.virat2022@vitstudent.ac.in"],
     questions: [
       "Why are you interested in RJ (English)?",
       "Any prior experience in speaking, anchoring or podcasting?",
       "Provide voice clips or audio samples.",
     ],
   },
-
 };

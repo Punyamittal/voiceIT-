@@ -394,7 +394,7 @@ export default function VoiceITWebsite() {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
-            size="md"
+            size="lg"
             className="bg-accent-orange hover:bg-accent-orange/90 text-white px-8 py-3 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-accent-orange/25"
             onClick={() => window.location.href = "/recruitment"}
           >
@@ -492,43 +492,86 @@ export default function VoiceITWebsite() {
           </div>
         </section>
 
-                <a
-                  href="https://www.linkedin.com/in/punya-mittal-a1122520b/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accent/80 font-medium transition-colors duration-200 inline-flex items-center gap-1"
-                >
-                  Punya Mittal
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                  </svg>
-                </a>
-                <span className="mx-1">and</span>
-                <a
-                  href="https://www.linkedin.com/in/hirendrabalaji/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accent/80 font-medium transition-colors duration-200 inline-flex items-center gap-1"
-                >
-                  Hirendra Balaji
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                  </svg>
-                </a>
+        {/* Footer */}
+      <footer className="bg-primary-bg border-t border-neutral-light py-8">
+        <div className="container mx-auto w-full px-2 sm:px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Voice IT</h3>
+              <p className="text-neutral-light">
+                The official RJ Club of VIT Chennai, bringing you the best in campus radio and entertainment.
               </p>
             </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><a href="#home" className="text-neutral-light hover:text-accent transition-colors">Home</a></li>
+                <li><a href="#about" className="text-neutral-light hover:text-accent transition-colors">About</a></li>
+                <li><a href="#team" className="text-neutral-light hover:text-accent transition-colors">Team</a></li>
+                <li><a href="#contact" className="text-neutral-light hover:text-accent transition-colors">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Connect</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-neutral-light hover:text-accent transition-colors">Instagram</a></li>
+                
+              
+                <li><a href="https://youtu.be/GV1CV79Gr4k" target="_blank" rel="noopener noreferrer" className="text-neutral-light hover:text-accent transition-colors">YouTube</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Contact</h3>
+              <ul className="space-y-2">
+                <li className="text-neutral-light">VIT Chennai Campus</li>
+                <li className="text-neutral-light">Chennai, Tamil Nadu</li>
+                <li className="text-neutral-light">Email: voiceit.vitchennai@gmail.com</li>
+              </ul>
+            </div>
           </div>
-        </footer>
+          <div className="mt-8 pt-8 border-t border-neutral-light text-center">
+            <p className="text-neutral-light">
+              © {new Date().getFullYear()} Voice IT. All rights reserved.
+            </p>
+            <p className="text-neutral-light mt-2">
+              Created and Designed by{" "}
+              <a
+                href="https://www.linkedin.com/in/punya-mittal-a1122520b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-medium transition-colors duration-200 inline-flex items-center gap-1"
+              >
+                Punya Mittal
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+              <span className="mx-1">and</span>
+              <a
+                href="https://www.linkedin.com/in/hirendrabalaji/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-medium transition-colors duration-200 inline-flex items-center gap-1"
+              >
+                Hirendra Balaji
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
       </div>
     </>
   )
